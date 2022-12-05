@@ -6,5 +6,6 @@
 void    *ft_philo_func(void *vargp);
 void    ft_init(t_ctx ctx);
 t_ctx   ft_parse(char **argv);
+double  ft_time(void);
 
 #endif

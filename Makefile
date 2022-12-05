@@ -6,7 +6,7 @@
 #    By: alevasse <alevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 07:28:53 by alevasse          #+#    #+#              #
-#    Updated: 2022/08/26 08:28:01 by alevasse         ###   ########.fr        #
+#    Updated: 2022/12/05 13:42:59 by alevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ 			= ${SRC:.c=.o}
 OBJ_B 			= ${SRC_B:.c=.o}
 				
 CC 				= gcc -g
-CFLAGS 			= -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS 			= -Wall -Wextra -Werror #-fsanitize=thread
 
 AR 				= ar rcs
 RM 				= rm -f

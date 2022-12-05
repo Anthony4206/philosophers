@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include <pthread.h>
 #include <sys/time.h>
 
@@ -9,10 +10,13 @@
 
 double  ft_time(void)
 {
-    struct timeval  time;
+    struct timeval  end;
+	static  long int start = 0;
 
-    gettimeofday(&time, NULL);
-    return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+    gettimeofday(&end, NULL);
+	if (!start)
+		start = end.tv_sec * 1000 + end.tv_usec / 1000;
+    return (end.tv_sec  * 1000 + end.tv_usec / 1000 - start);
 }
 
 void    ft_eat(t_philos *philo)
@@ -27,10 +31,17 @@ void    ft_eat(t_philos *philo)
     pthread_mutex_unlock(&philo->fork_r);
 }
 
+void	ft_sleep(t_philos *philo)
+{
+	printf("%.0f %d is sleeping\n", ft_time(), philo->philo);
+    usleep(philo->time_sleep * 1000);
+	printf("%.0f %d is thinking\n", ft_time(), philo->philo);
+}
+
 void    *ft_philo_func(void *philo)
 {
-    t_philos    *res;
-    int         nb_diner;
+    t_philos    	*res;
+    int         	nb_diner;
 
     res = (t_philos *)philo;
     nb_diner = 0;
@@ -38,7 +49,7 @@ void    *ft_philo_func(void *philo)
     {
         ft_eat(philo);
         nb_diner++;
-//        ft_sleep(philo);
+        ft_sleep(philo);
     }
     return (NULL);
 }

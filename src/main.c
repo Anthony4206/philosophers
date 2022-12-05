@@ -20,6 +20,7 @@ int main(int argc, char **argv)
 		return (-1);
 	}
 	ctx = ft_parse(argv);
+	ft_time();
 	ft_init(ctx);
 	return (EXIT_SUCCESS);
 }

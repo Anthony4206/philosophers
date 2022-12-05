@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <pthread.h>
+#include <sys/time.h>
 
 #include "structs.h"
 #include "philo.h"
@@ -50,7 +52,6 @@ void    ft_create_thread(t_ctx ctx, t_thread ths, t_philos *philo)
     i = -1;
     while (++i < ctx.nb_philo)
         pthread_create(&ths.th[i], NULL, ft_philo_func, &philo[i]);
-
 }
 
 void    ft_join_thread(t_ctx ctx, t_thread ths)
