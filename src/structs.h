@@ -3,8 +3,6 @@
 
 # include <pthread.h>
 
-# define NB_PHILO 4
-
 typedef struct s_ctx
 {
     int nb_philo;
@@ -12,13 +10,24 @@ typedef struct s_ctx
     int time_eat;
     int time_sleep;
     int nb_diner;
+
 }       t_ctx;
 
 typedef struct s_philos
 {
-    int         nb_fork;
-    pthread_t   *philo;
-    pthread_t   thread_forks;
-}               t_philos;
+    int             philo;
+    int             time_die;
+    int             time_eat;
+    int             time_sleep;
+    int             nb_diner;
+    pthread_mutex_t fork_l;
+    pthread_mutex_t fork_r;
+}                   t_philos;
+
+typedef struct s_thread
+{
+    pthread_t       *th;
+    pthread_mutex_t *fork;
+}                   t_thread;
 
 #endif

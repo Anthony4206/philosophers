@@ -12,7 +12,7 @@
 
 NAME 			= philo
 
-SRC 			= src/main.c src/init.c src/thread.c
+SRC 			= src/main.c src/init.c src/thread.c src/utils.c
 
 SRC_B 			=
 

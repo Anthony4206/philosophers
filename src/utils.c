@@ -1,3 +1,26 @@
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+int	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+		i++;
+	return (i);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
+}
+
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
