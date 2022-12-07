@@ -8,10 +8,10 @@
 #include "structs.h"
 #include "philo.h"
 
-double  ft_time(void)
+long int  ft_time(void)
 {
     struct timeval  end;
-	static  long int start = 0;
+	static long int start = 0;
 
     gettimeofday(&end, NULL);
 	if (!start)
@@ -21,21 +21,21 @@ double  ft_time(void)
 
 void    ft_eat(t_philos *philo)
 {
-    pthread_mutex_lock(&philo->fork_l);
-    pthread_mutex_lock(&philo->fork_r);
-	printf("%.0f %d has taken a fork\n", ft_time(), philo->philo);
-	printf("%.0f %d has taken a fork\n", ft_time(), philo->philo);
-	printf("%.0f %d is eating\n", ft_time(), philo->philo);
+    pthread_mutex_lock(philo->fork_l);
+    pthread_mutex_lock(philo->fork_r);
+	printf("%ld %d has taken a fork\n", ft_time(), philo->philo);
+	printf("%ld %d has taken a fork\n", ft_time(), philo->philo);
+	printf("%ld %d is eating\n", ft_time(), philo->philo);
     usleep(philo->time_eat * 1000);
-    pthread_mutex_unlock(&philo->fork_l);
-    pthread_mutex_unlock(&philo->fork_r);
+    pthread_mutex_unlock(philo->fork_l);
+    pthread_mutex_unlock(philo->fork_r);
 }
 
 void	ft_sleep(t_philos *philo)
 {
-	printf("%.0f %d is sleeping\n", ft_time(), philo->philo);
+	printf("%ld %d is sleeping\n", ft_time(), philo->philo);
     usleep(philo->time_sleep * 1000);
-	printf("%.0f %d is thinking\n", ft_time(), philo->philo);
+	printf("%ld %d is thinking\n", ft_time(), philo->philo);
 }
 
 void    *ft_philo_func(void *philo)
