@@ -6,13 +6,14 @@
 #    By: alevasse <alevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 07:28:53 by alevasse          #+#    #+#              #
-#    Updated: 2022/12/05 13:42:59 by alevasse         ###   ########.fr        #
+#    Updated: 2022/12/09 10:33:25 by alevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 			= philo
 
-SRC 			= src/main.c src/init.c src/thread.c src/utils.c
+SRC 			= 	src/main.c src/init.c src/thread.c src/utils.c src/utils_2.c \
+					src/death.c
 
 SRC_B 			=
 

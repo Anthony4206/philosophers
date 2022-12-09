@@ -1,9 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alevasse <alevasse@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/09 12:29:34 by alevasse          #+#    #+#             */
+/*   Updated: 2022/12/09 12:29:36 by alevasse         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef UTILS_H
 # define UTILS_H
 
-int	ft_strlen(const char *s);
-void	ft_putstr_fd(char *s, int fd);
-void	*ft_calloc(size_t count, size_t size);
-int	ft_atoi(const char *str);
+# include "sys/time.h"
+
+# include "structs.h"
+
+int			ft_strlen(const char *s);
+void		ft_putstr_fd(char *s, int fd);
+void		*ft_calloc(size_t count, size_t size);
+int			ft_atoi(const char *str);
+int			ft_error(char **argv);
+void		ft_usleep(t_ctx *rules, long time);
+long int	ft_diff(struct timeval diff);
+long int	ft_death_diff(long int now, long int last);
+long int	ft_time(void);
+void		ft_lock_print(t_ctx *rules, int philo, char *msg);
 
 #endif
