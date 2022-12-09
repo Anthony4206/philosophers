@@ -3,7 +3,7 @@
 
 #include "structs.h"
 
-void        *ft_philo_func(void *vargp);
+void        *ft_philo_func(void *v_philo);
 t_thread    ft_init_th(t_ctx ctx);
 t_philos    *ft_init_philo(t_ctx *ctx, t_thread ths);
 void        ft_init(t_ctx ctx);

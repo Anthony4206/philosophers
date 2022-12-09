@@ -19,37 +19,52 @@ long int  ft_time(void)
     return (end.tv_sec  * 1000 + end.tv_usec / 1000 - start);
 }
 
+void    ft_lock_print(t_ctx *rules, int philo, char *msg)
+{
+    pthread_mutex_lock(rules->ths.print);
+    if (!rules->is_die)
+    {
+        printf("%ld ", ft_time());
+	    printf("%d ", philo + 1);
+	    printf("%s\n", msg);
+    }
+    pthread_mutex_unlock(rules->ths.print);
+}
+
 void    ft_eat(t_philos *philo)
 {
     pthread_mutex_lock(philo->fork_l);
     pthread_mutex_lock(philo->fork_r);
-	printf("%ld %d has taken a fork\n", ft_time(), philo->philo);
-	printf("%ld %d has taken a fork\n", ft_time(), philo->philo);
-	printf("%ld %d is eating\n", ft_time(), philo->philo);
-    usleep(philo->time_eat * 1000);
+    ft_lock_print(philo->rules, philo->philo, "has taken a fork");
+    ft_lock_print(philo->rules, philo->philo, "has taken a fork");
+    ft_lock_print(philo->rules, philo->philo, "is eating");
+    usleep(philo->rules->time_eat * 1000);
     pthread_mutex_unlock(philo->fork_l);
     pthread_mutex_unlock(philo->fork_r);
 }
 
-void	ft_sleep(t_philos *philo)
+void	ft_sleep_and_think(t_philos *philo)
 {
-	printf("%ld %d is sleeping\n", ft_time(), philo->philo);
-    usleep(philo->time_sleep * 1000);
-	printf("%ld %d is thinking\n", ft_time(), philo->philo);
+    ft_lock_print(philo->rules, philo->philo, "is sleeping");
+    usleep(philo->rules->time_sleep * 1000);
+    ft_lock_print(philo->rules, philo->philo, "is thinking");
 }
 
-void    *ft_philo_func(void *philo)
+void    *ft_philo_func(void *v_philo)
 {
-    t_philos    	*res;
-    int         	nb_diner;
+    t_philos    *philo;
+    int         nb_diner;
 
-    res = (t_philos *)philo;
+    philo = (t_philos *)v_philo;
     nb_diner = 0;
+    if (philo->philo % 2)
+        usleep(1000);
     while (1)
     {
         ft_eat(philo);
-        nb_diner++;
-        ft_sleep(philo);
+        if (++nb_diner && nb_diner == philo->rules->nb_diner)
+            break ;
+        ft_sleep_and_think(philo);
     }
     return (NULL);
 }
