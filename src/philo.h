@@ -22,5 +22,6 @@ void		ft_create_thread(t_ctx ctx);
 void		ft_join_thread(t_ctx ctx);
 void		*ft_philo_func(void *v_philo);
 void		ft_death(t_ctx *ctx);
+void        ft_free(t_ctx ctx);
 
 #endif

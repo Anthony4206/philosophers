@@ -15,22 +15,14 @@
 #include <string.h>
 #include <stdio.h>
 
-int	ft_error(char **argv)
-{
-	int	i;
-	int	j;
+#include "structs.h"
 
-	i = 0;
-	while (argv[++i])
-	{
-		j = -1;
-		while (argv[i][++j])
-		{
-			if (argv[i][j] < '0' || argv[i][j] > '9')
-				return (1);
-		}
-	}
-	return (0);
+void        ft_free(t_ctx ctx)
+{
+    free(ctx.ths.th);
+    free(ctx.ths.fork);
+    free(ctx.ths.print);
+    free(ctx.philo);
 }
 
 int	ft_strlen(const char *s)
@@ -43,6 +35,26 @@ int	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
+}
+
+int	ft_error(char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+    if ((ft_strlen(argv[1]) == 1) && (argv[1][0] == '0'))
+        return (1);
+	while (argv[++i])
+	{
+		j = -1;
+		while (argv[i][++j])
+		{
+			if (argv[i][j] < '0' || argv[i][j] > '9')
+				return (1);
+		}
+	}
+	return (0);
 }
 
 void	ft_putstr_fd(char *s, int fd)

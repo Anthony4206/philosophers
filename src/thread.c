@@ -64,7 +64,7 @@ void	*ft_philo_func(void *v_philo)
 	philo = (t_philos *)v_philo;
 	nb_diner = 0;
 	if (philo->philo % 2)
-		ft_usleep(philo->rules, 1000);
+		ft_usleep(philo->rules, 10000);
 	while (1)
 	{
 		ft_eat(philo);
