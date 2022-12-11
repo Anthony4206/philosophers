@@ -50,7 +50,7 @@ void	ft_eat(t_philos *philo)
 	ft_lock_print(philo->rules, philo->philo, "has taken a fork");
 	ft_lock_print(philo->rules, philo->philo, "has taken a fork");
 	ft_lock_print(philo->rules, philo->philo, "is eating");
-	philo->last_diner = ft_time();
+	philo->last_diner = ft_time(philo->start);
 	ft_usleep(philo->rules, philo->rules->time_eat * 1000);
 	pthread_mutex_unlock(philo->fork_l);
 	pthread_mutex_unlock(philo->fork_r);

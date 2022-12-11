@@ -21,6 +21,7 @@ typedef struct s_philos
 {
 	int				philo;
 	int				last_diner;
+    long int        start;
 	pthread_mutex_t	*fork_l;
 	pthread_mutex_t	*fork_r;
 	pthread_mutex_t	*print;
@@ -42,6 +43,7 @@ typedef struct s_ctx
 	int			time_sleep;
 	int			nb_diner;
 	int			is_die;
+    long int    start;
 	t_thread	ths;
 	t_philos	*philo;
 }				t_ctx;

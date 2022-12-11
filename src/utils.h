@@ -25,7 +25,7 @@ int			ft_error(char **argv);
 void		ft_usleep(t_ctx *rules, long time);
 long int	ft_diff(struct timeval diff);
 long int	ft_death_diff(long int now, long int last);
-long int	ft_time(void);
+long int	ft_time(long int start);
 void		ft_lock_print(t_ctx *rules, int philo, char *msg);
 
 #endif

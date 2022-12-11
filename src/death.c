@@ -35,7 +35,7 @@ void	ft_death(t_ctx *ctx)
 		i = -1;
 		while (++i < ctx->nb_philo && !ctx->is_die)
 		{
-			if (ft_death_diff(ft_time(), ctx->philo[i].last_diner)
+			if (ft_death_diff(ft_time(ctx->start), ctx->philo[i].last_diner)
 				> ctx->time_die)
 			{
 				ft_lock_print(ctx->philo[i].rules, ctx->philo[i].philo, "died");

@@ -21,7 +21,8 @@
 
 t_ctx	ft_parse(char **argv)
 {
-	t_ctx	ret;
+	t_ctx	        ret;
+    struct timeval  tv;
 
 	ret.nb_philo = ft_atoi(argv[1]);
 	ret.time_die = ft_atoi(argv[2]);
@@ -32,6 +33,8 @@ t_ctx	ft_parse(char **argv)
 	else
 		ret.nb_diner = -1;
 	ret.is_die = 0;
+    gettimeofday(&tv, NULL);
+    ret.start = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	ret.ths = ft_init_th(ret);
 	ret.philo = ft_init_philo(&ret, ret.ths);
 	return (ret);
@@ -64,6 +67,7 @@ t_philos	*ft_init_philo(t_ctx *ctx, t_thread ths)
 		ret[i].philo = i;
 		ret[i].last_diner = 0;
 		ret[i].rules = ctx;
+        ret[i].start = ctx->start;
 		ret[i].fork_l = &ths.fork[i];
 		if (!i)
 			ret[i].fork_r = &ths.fork[ctx->nb_philo - 1];

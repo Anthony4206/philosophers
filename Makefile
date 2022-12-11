@@ -21,7 +21,7 @@ OBJ 			= ${SRC:.c=.o}
 OBJ_B 			= ${SRC_B:.c=.o}
 				
 CC 				= gcc -g
-CFLAGS 			= -Wall -Wextra -Werror #-fsanitize=thread
+CFLAGS 			= -Wall -Wextra -Werror -fsanitize=thread
 
 AR 				= ar rcs
 RM 				= rm -f

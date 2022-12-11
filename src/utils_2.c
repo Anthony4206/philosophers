@@ -39,14 +39,11 @@ void	ft_usleep(t_ctx *rules, long time)
 		usleep(50);
 }
 
-long int	ft_time(void)
+long int	ft_time(long int start)
 {
 	struct timeval	end;
-	static long int	start = 0;
 
 	gettimeofday(&end, NULL);
-	if (!start)
-		start = end.tv_sec * 1000 + end.tv_usec / 1000;
 	return (end.tv_sec * 1000 + end.tv_usec / 1000 - start);
 }
 
@@ -55,7 +52,7 @@ void	ft_lock_print(t_ctx *rules, int philo, char *msg)
 	pthread_mutex_lock(rules->ths.print);
 	if (!rules->is_die)
 	{
-		printf("%ld ", ft_time());
+		printf("%ld ", ft_time(rules->start));
 		printf("%d ", philo + 1);
 		printf("%s\n", msg);
 	}
