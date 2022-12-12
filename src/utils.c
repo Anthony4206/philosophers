@@ -6,7 +6,7 @@
 /*   By: alevasse <alevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:23:38 by alevasse          #+#    #+#             */
-/*   Updated: 2022/12/09 12:38:38 by alevasse         ###   ########.fr       */
+/*   Updated: 2022/12/12 06:54:47 by alevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 #include <stdio.h>
 
 #include "structs.h"
-
-void        ft_free(t_ctx ctx)
-{
-    free(ctx.ths.th);
-    free(ctx.ths.fork);
-    free(ctx.ths.print);
-    free(ctx.philo);
-}
 
 int	ft_strlen(const char *s)
 {
@@ -43,8 +35,8 @@ int	ft_error(char **argv)
 	int	j;
 
 	i = 0;
-    if ((ft_strlen(argv[1]) == 1) && (argv[1][0] == '0'))
-        return (1);
+	if ((ft_strlen(argv[1]) == 1) && (argv[1][0] == '0'))
+		return (1);
 	while (argv[++i])
 	{
 		j = -1;
