@@ -35,8 +35,10 @@ void	ft_usleep(t_ctx *rules, long time)
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
+ //   pthread_mutex_lock(rules->ths.end);
 	while (ft_diff(tv) <= time && !rules->is_die)
 		usleep(50);
+//    pthread_mutex_unlock(rules->ths.end);
 }
 
 long int	ft_time(long int start)

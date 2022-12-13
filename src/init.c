@@ -21,11 +21,6 @@
 
 void	ft_free(t_ctx ctx)
 {
-	int	i;
-
-	i = -1;
-	while (++i < ctx.nb_philo)
-		free(ctx.philo[i].last_diner);
 	free(ctx.ths.th);
 	free(ctx.ths.fork);
 	free(ctx.ths.print);
@@ -42,11 +37,10 @@ t_ctx	ft_parse(char **argv)
 	ret.time_die = ft_atoi(argv[2]);
 	ret.time_eat = ft_atoi(argv[3]);
 	ret.time_sleep = ft_atoi(argv[4]);
-	ret.nb_diner = ft_calloc(1, sizeof(int));
 	if (argv[5])
-		*ret.nb_diner = ft_atoi(argv[5]);
+		ret.nb_diner = ft_atoi(argv[5]);
 	else
-		*ret.nb_diner = -1;
+		ret.nb_diner = -1;
 	ret.is_die = 0;
 	gettimeofday(&tv, NULL);
 	ret.start = tv.tv_sec * 1000 + tv.tv_usec / 1000;
@@ -64,11 +58,13 @@ t_thread	ft_init_th(t_ctx ctx)
 	ret.fork = ft_calloc(ctx.nb_philo, sizeof(pthread_mutex_t));
 	ret.print = ft_calloc(1, sizeof(pthread_mutex_t));
 	ret.die = ft_calloc(1, sizeof(pthread_mutex_t));
+	ret.end = ft_calloc(1, sizeof(pthread_mutex_t));
 	i = -1;
 	while (++i < ctx.nb_philo)
 		pthread_mutex_init(&ret.fork[i], NULL);
 	pthread_mutex_init(ret.print, NULL);
 	pthread_mutex_init(ret.die, NULL);
+	pthread_mutex_init(ret.end, NULL);
 	return (ret);
 }
 

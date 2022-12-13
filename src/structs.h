@@ -34,6 +34,7 @@ typedef struct s_thread
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*die;
+	pthread_mutex_t	*end;
 }					t_thread;
 
 typedef struct s_ctx
@@ -42,7 +43,7 @@ typedef struct s_ctx
 	int			time_die;
 	int			time_eat;
 	int			time_sleep;
-	int			*nb_diner;
+	int			nb_diner;
 	int			is_die;
 	long int	start;
 	t_thread	ths;

@@ -20,8 +20,10 @@ void	ft_all_died(t_ctx *ctx)
 	int	i;
 
 	i = -1;
+	pthread_mutex_lock(ctx->ths.end);
 	while (++i < ctx->nb_philo)
 		ctx->philo[i].rules->is_die = 1;
+	pthread_mutex_unlock(ctx->ths.end);
 }
 
 void	ft_death(t_ctx *ctx)
@@ -30,12 +32,17 @@ void	ft_death(t_ctx *ctx)
 
 	while (ctx->nb_diner)
 	{
-		i = -1;
+        if (ctx->nb_diner > 0 && (ft_time(ctx->start)
+            > ((ctx->nb_diner - 1) * (ctx->time_eat + ctx->time_sleep)
+            + ctx->time_die)))
+            break ; 		
+        i = -1;
 		while (++i < ctx->nb_philo && !ctx->is_die)
 		{
+
 			pthread_mutex_lock(ctx->ths.die);
 			if ((ft_death_diff(ft_time(ctx->start), *(ctx->philo[i].last_diner))
-					> ctx->time_die) && *(ctx->nb_diner))
+					> ctx->time_die))
 			{
 				ft_lock_print(ctx->philo[i].rules, ctx->philo[i].philo, "died");
 				ctx->is_die = 1;

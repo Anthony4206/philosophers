@@ -38,6 +38,8 @@ int	main(int argc, char **argv)
 		ft_putstr_fd(" 1 died\n", 2);
 		return (EXIT_SUCCESS);
 	}
+	if (ft_strlen(argv[5]) == 1 && argv[5][0] == '0')
+    	return (EXIT_SUCCESS);    
 	ctx = ft_parse(argv);
 	ft_create_thread(ctx);
 	ft_death(&ctx);

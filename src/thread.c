@@ -39,7 +39,7 @@ void	ft_join_thread(t_ctx *ctx)
 	i = -1;
 	while (++i < ctx->nb_philo)
 		pthread_join(ctx->ths.th[i], NULL);
-	*ctx->nb_diner = 0;
+	ctx->nb_diner = 0;
 	i = -1;
 	while (++i < ctx->nb_philo)
 		pthread_mutex_destroy(&ctx->ths.fork[i]);
@@ -77,9 +77,11 @@ void	*ft_philo_func(void *v_philo)
 	while (1)
 	{
 		ft_eat(philo);
-		if ((++nb_diner && nb_diner == *philo->rules->nb_diner)
+	    pthread_mutex_lock(philo->rules->ths.end);
+		if ((++nb_diner && nb_diner == philo->rules->nb_diner)
 			|| philo->rules->is_die)
 			break ;
+	    pthread_mutex_unlock(philo->rules->ths.end);
 		ft_lock_print(philo->rules, philo->philo, "is sleeping");
 		ft_usleep(philo->rules, philo->rules->time_sleep * 1000);
 		ft_lock_print(philo->rules, philo->philo, "is thinking");
