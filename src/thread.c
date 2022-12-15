@@ -63,6 +63,11 @@ void	ft_eat(t_philos *philo)
 	pthread_mutex_unlock(philo->fork_r);
 }
 
+void    ft_terminate_diner(t_philos *philo)
+{
+    
+}
+
 void	*ft_philo_func(void *v_philo)
 {
 	t_philos	*philo;
@@ -82,6 +87,7 @@ void	*ft_philo_func(void *v_philo)
 		if ((++nb_diner && nb_diner == philo->rules->nb_diner)
 			|| philo->rules->is_die)
         {
+            
 	        pthread_mutex_unlock(philo->rules->ths.end);
             ft_lock_print(philo->rules, philo->philo, "is sleeping");
 		    ft_usleep(philo->rules, philo->rules->time_sleep * 1000);
