@@ -6,7 +6,7 @@
 /*   By: alevasse <alevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:26:01 by alevasse          #+#    #+#             */
-/*   Updated: 2022/12/12 13:13:18 by alevasse         ###   ########.fr       */
+/*   Updated: 2022/12/15 13:45:42 by alevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ struct	s_ctx;
 typedef struct s_philos
 {
 	int				philo;
+	int				nb_diner;
 	long int		*last_diner;
 	long int		start;
 	pthread_mutex_t	*fork_l;

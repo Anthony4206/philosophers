@@ -6,7 +6,7 @@
 /*   By: alevasse <alevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:29:01 by alevasse          #+#    #+#             */
-/*   Updated: 2022/12/12 13:15:29 by alevasse         ###   ########.fr       */
+/*   Updated: 2022/12/15 13:45:45 by alevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ t_philos	*ft_init_philo(t_ctx *ctx, t_thread ths)
 	{
 		ret[i].philo = i;
 		ret[i].last_diner = ft_calloc(1, sizeof(long int));
+		ret[i].nb_diner = 0;
 		ret[i].rules = ctx;
 		ret[i].start = ctx->start;
 		ret[i].fork_l = &ths.fork[i];

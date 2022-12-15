@@ -6,7 +6,7 @@
 /*   By: alevasse <alevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:22:52 by alevasse          #+#    #+#             */
-/*   Updated: 2022/12/12 13:17:48 by alevasse         ###   ########.fr       */
+/*   Updated: 2022/12/15 13:45:30 by alevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,18 @@ void	ft_eat(t_philos *philo)
 	pthread_mutex_unlock(philo->fork_r);
 }
 
-void    ft_terminate_diner(t_philos *philo)
+void	ft_sleep_think(t_philos *philo)
 {
-    
+	ft_lock_print(philo->rules, philo->philo, "is sleeping");
+	ft_usleep(philo->rules, philo->rules->time_sleep * 1000);
+	ft_lock_print(philo->rules, philo->philo, "is thinking");
 }
 
 void	*ft_philo_func(void *v_philo)
 {
 	t_philos	*philo;
-	int			nb_diner;
 
 	philo = (t_philos *)v_philo;
-	nb_diner = 0;
 	if (philo->philo % 2)
 	{
 		ft_lock_print(philo->rules, philo->philo, "is thinking");
@@ -83,20 +83,17 @@ void	*ft_philo_func(void *v_philo)
 	while (1)
 	{
 		ft_eat(philo);
-	    pthread_mutex_lock(philo->rules->ths.end);
-		if ((++nb_diner && nb_diner == philo->rules->nb_diner)
+		pthread_mutex_lock(philo->rules->ths.end);
+		if ((++philo->nb_diner && philo->nb_diner == philo->rules->nb_diner)
 			|| philo->rules->is_die)
-        {
-            
-	        pthread_mutex_unlock(philo->rules->ths.end);
-            ft_lock_print(philo->rules, philo->philo, "is sleeping");
-		    ft_usleep(philo->rules, philo->rules->time_sleep * 1000);
+		{
+			pthread_mutex_unlock(philo->rules->ths.end);
+			if (!philo->rules->is_die && philo->rules->nb_diner > 0)
+				ft_terminate_diner(philo);
 			break ;
-        }
-	    pthread_mutex_unlock(philo->rules->ths.end);
-		ft_lock_print(philo->rules, philo->philo, "is sleeping");
-		ft_usleep(philo->rules, philo->rules->time_sleep * 1000);
-		ft_lock_print(philo->rules, philo->philo, "is thinking");
+		}
+		pthread_mutex_unlock(philo->rules->ths.end);
+		ft_sleep_think(philo);
 	}
 	return (NULL);
 }

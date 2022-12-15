@@ -6,7 +6,7 @@
 /*   By: alevasse <alevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:24:04 by alevasse          #+#    #+#             */
-/*   Updated: 2022/12/09 12:25:01 by alevasse         ###   ########.fr       */
+/*   Updated: 2022/12/15 12:53:22 by alevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,18 @@ void	ft_usleep(t_ctx *rules, long time)
 {
 	struct timeval	tv;
 
-    (void)rules;
 	gettimeofday(&tv, NULL);
 	while (ft_diff(tv) <= time)
-    {
-        pthread_mutex_lock(rules->ths.end);
-        if (rules->is_die) 
-        {
-            pthread_mutex_unlock(rules->ths.end);
-            break ;
-        }
-        pthread_mutex_unlock(rules->ths.end);
+	{
+		pthread_mutex_lock(rules->ths.end);
+		if (rules->is_die)
+		{
+			pthread_mutex_unlock(rules->ths.end);
+			break ;
+		}
+		pthread_mutex_unlock(rules->ths.end);
 		usleep(50);
-    }
+	}
 }
 
 long int	ft_time(long int start)

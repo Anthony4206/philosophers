@@ -6,7 +6,7 @@
 /*   By: alevasse <alevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:23:49 by alevasse          #+#    #+#             */
-/*   Updated: 2022/12/12 13:08:43 by alevasse         ###   ########.fr       */
+/*   Updated: 2022/12/15 12:54:46 by alevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 		return (EXIT_SUCCESS);
 	}
 	if (ft_strlen(argv[5]) == 1 && argv[5][0] == '0')
-    	return (EXIT_SUCCESS);    
+		return (EXIT_SUCCESS);
 	ctx = ft_parse(argv);
 	ft_create_thread(ctx);
 	ft_death(&ctx);
