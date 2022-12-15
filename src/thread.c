@@ -45,6 +45,7 @@ void	ft_join_thread(t_ctx *ctx)
 		pthread_mutex_destroy(&ctx->ths.fork[i]);
 	pthread_mutex_destroy(ctx->ths.print);
 	pthread_mutex_destroy(ctx->ths.die);
+	pthread_mutex_destroy(ctx->ths.end);
 }
 
 void	ft_eat(t_philos *philo)
@@ -80,7 +81,12 @@ void	*ft_philo_func(void *v_philo)
 	    pthread_mutex_lock(philo->rules->ths.end);
 		if ((++nb_diner && nb_diner == philo->rules->nb_diner)
 			|| philo->rules->is_die)
+        {
+	        pthread_mutex_unlock(philo->rules->ths.end);
+            ft_lock_print(philo->rules, philo->philo, "is sleeping");
+		    ft_usleep(philo->rules, philo->rules->time_sleep * 1000);
 			break ;
+        }
 	    pthread_mutex_unlock(philo->rules->ths.end);
 		ft_lock_print(philo->rules, philo->philo, "is sleeping");
 		ft_usleep(philo->rules, philo->rules->time_sleep * 1000);

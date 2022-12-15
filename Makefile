@@ -19,7 +19,7 @@ SRC 			= 	src/main.c src/init.c src/thread.c src/utils.c src/utils_2.c \
 OBJ 			= ${SRC:.c=.o}
 				
 CC 				= gcc -g
-CFLAGS 			= -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS 			= -Wall -Wextra -Werror #-fsanitize=thread
 
 AR 				= ar rcs
 RM 				= rm -f

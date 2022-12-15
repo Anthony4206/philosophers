@@ -20,10 +20,12 @@ void	ft_all_died(t_ctx *ctx)
 	int	i;
 
 	i = -1;
-	pthread_mutex_lock(ctx->ths.end);
 	while (++i < ctx->nb_philo)
+    {
+	    pthread_mutex_lock(ctx->ths.end);
 		ctx->philo[i].rules->is_die = 1;
-	pthread_mutex_unlock(ctx->ths.end);
+	    pthread_mutex_unlock(ctx->ths.end);
+    }
 }
 
 void	ft_death(t_ctx *ctx)

@@ -20,6 +20,7 @@ t_philos	*ft_init_philo(t_ctx *ctx, t_thread ths);
 t_ctx		ft_parse(char **argv);
 void		ft_create_thread(t_ctx ctx);
 void		ft_join_thread(t_ctx *ctx);
+void        ft_terminate_diner(t_philos *philo);
 void		*ft_philo_func(void *v_philo);
 void		ft_death(t_ctx *ctx);
 void		ft_free(t_ctx ctx);
